@@ -1,0 +1,88 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+overflow: hidden;
+}
+
+.container {
+z-index: 10;
+position: relative;
+}
+
+.card {
+background: rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(10px);
+border-radius: 30px;
+padding: 50px;
+box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+border: 1px solid gold;
+}
+
+.moon {
+font-size: 70px;
+animation: float 3s infinite;
+}
+
+h1 {
+color: gold;
+font-size: 2.5rem;
+margin: 20px 0;
+}
+
+p {
+color: white;
+font-size: 1.2rem;
+line-height: 1.6;
+margin: 20px 0;
+}
+
+button {
+background: gold;
+border: none;
+padding: 12px 30px;
+font-size: 1.1rem;
+font-weight: bold;
+border-radius: 50px;
+cursor: pointer;
+margin-top: 15px;
+transition: transform 0.3s;
+}
+
+button:hover {
+transform: scale(1.05);
+}
+
+.hidden {
+opacity: 0;
+transition: opacity 0.5s;
+}
+
+.hidden.show {
+opacity: 1;
+color: #ffd700;
+}
+
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-15px); }
+}
+
+#fireworks {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+}

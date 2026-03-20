@@ -1,0 +1,89 @@
+const canvas = document.getElementById('fireworks');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function random(min, max) {
+return Math.random() * (max - min) + min;
+}
+
+function createFirework(x, y) {
+for (let i = 0; i < 80; i++) {
+const angle = random(0, Math.PI * 2);
+const speed = random(2, 8);
+particles.push({
+x: x, y: y,
+vx: Math.cos(angle) * speed,
+vy: Math.sin(angle) * speed,
+alpha: 1,
+color: `hsl(${random(0, 360)}, 100%, 60%)`,
+size: random(3, 6)
+});
+}
+}
+
+function update() {
+for (let i = 0; i < particles.length; i++) {
+particles[i].x += particles[i].vx;
+particles[i].y += particles[i].vy;
+particles[i].vy += 0.2;
+particles[i].alpha -= 0.02;
+particles[i].size -= 0.05;
+
+if (particles[i].alpha <= 0 || particles[i].size <= 0) {
+particles.splice(i, 1);
+i--;
+}
+}
+}
+
+function draw() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+for (let p of particles) {
+ctx.globalAlpha = p.alpha;
+ctx.fillStyle = p.color;
+ctx.beginPath();
+ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+ctx.fill();
+}
+requestAnimationFrame(animate);
+}
+
+function animate() {
+update();
+draw();
+}
+
+function showFireworks() {
+const msg = document.getElementById('message');
+msg.innerHTML = "✨ Taqabbalallahu minna wa minkum! ✨";
+msg.classList.add('show');
+
+for (let i = 0; i < 10; i++) {
+setTimeout(() => {
+createFirework(random(100, canvas.width - 100), random(100, canvas.height - 100));
+}, i * 100);
+}
+
+setTimeout(() => {
+msg.classList.remove('show');
+}, 3000);
+}
+
+window.addEventListener('load', () => {
+for (let i = 0; i < 5; i++) {
+setTimeout(() => {
+createFirework(random(100, canvas.width - 100), random(100, canvas.height - 100));
+}, i * 200);
+}
+});
+
+window.addEventListener('resize', () => {
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+});
+
+animate();

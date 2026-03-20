@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Mubarak</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="moon">🌙</div>
+<h1>Eid Mubarak! ✨</h1>
+<p>Allah aapki har dua qubool farmaye.<br>Khushiyan aur barkatein naseeb ho!</p>
+<button onclick="showFireworks()">✨ Special Dua ✨</button>
+<p id="message" class="hidden"></p>
+</div>
+</div>
+<canvas id="fireworks"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
